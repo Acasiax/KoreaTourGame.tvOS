@@ -15,6 +15,10 @@
 		AA4546E42B84C79E003D35A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4546E22B84C79E003D35A0 /* Main.storyboard */; };
 		AA4546E62B84C79F003D35A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4546E52B84C79F003D35A0 /* Assets.xcassets */; };
 		AA4546E92B84C79F003D35A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4546E72B84C79F003D35A0 /* LaunchScreen.storyboard */; };
+		AA4546F22B84C7CF003D35A0 /* Dumpster.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4546EF2B84C7CF003D35A0 /* Dumpster.swift */; };
+		AA4546F32B84C7CF003D35A0 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4546F02B84C7CF003D35A0 /* Obstacle.swift */; };
+		AA4546F42B84C7CF003D35A0 /* SKNodeUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4546F12B84C7CF003D35A0 /* SKNodeUpdate.swift */; };
+		AA4546F62B84C7E5003D35A0 /* Game.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4546F52B84C7E5003D35A0 /* Game.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,10 @@
 		AA4546E32B84C79E003D35A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA4546E52B84C79F003D35A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA4546E82B84C79F003D35A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AA4546EF2B84C7CF003D35A0 /* Dumpster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dumpster.swift; sourceTree = "<group>"; };
+		AA4546F02B84C7CF003D35A0 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
+		AA4546F12B84C7CF003D35A0 /* SKNodeUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKNodeUpdate.swift; sourceTree = "<group>"; };
+		AA4546F52B84C7E5003D35A0 /* Game.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Game.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,10 @@
 				AA4546DC2B84C79E003D35A0 /* Actions.sks */,
 				AA4546DE2B84C79E003D35A0 /* GameScene.swift */,
 				AA4546E02B84C79E003D35A0 /* GameViewController.swift */,
+				AA4546EF2B84C7CF003D35A0 /* Dumpster.swift */,
+				AA4546F02B84C7CF003D35A0 /* Obstacle.swift */,
+				AA4546F12B84C7CF003D35A0 /* SKNodeUpdate.swift */,
+				AA4546F52B84C7E5003D35A0 /* Game.xcassets */,
 				AA4546E22B84C79E003D35A0 /* Main.storyboard */,
 				AA4546E52B84C79F003D35A0 /* Assets.xcassets */,
 				AA4546E72B84C79F003D35A0 /* LaunchScreen.storyboard */,
@@ -134,6 +146,7 @@
 				AA4546E62B84C79F003D35A0 /* Assets.xcassets in Resources */,
 				AA4546E92B84C79F003D35A0 /* LaunchScreen.storyboard in Resources */,
 				AA4546DD2B84C79E003D35A0 /* Actions.sks in Resources */,
+				AA4546F62B84C7E5003D35A0 /* Game.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +158,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA4546DF2B84C79E003D35A0 /* GameScene.swift in Sources */,
+				AA4546F22B84C7CF003D35A0 /* Dumpster.swift in Sources */,
+				AA4546F42B84C7CF003D35A0 /* SKNodeUpdate.swift in Sources */,
+				AA4546F32B84C7CF003D35A0 /* Obstacle.swift in Sources */,
 				AA4546E12B84C79E003D35A0 /* GameViewController.swift in Sources */,
 				AA4546D92B84C79E003D35A0 /* AppDelegate.swift in Sources */,
 			);
