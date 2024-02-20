@@ -8,8 +8,8 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
-    
+class GameScene: SKScene, SKPhysicsContactDelegate {
+    var gameEnded = false  // 게임 종료 여부를 나타내는 플래그
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
@@ -33,20 +33,22 @@ class GameScene: SKScene {
     var isJumping = false
     
     
-    //Physics⛑️
-    let COLLIDER_CHAR_FRONT: UInt32 = 1 << 0
-    let COLLIDER_CHAR_BOTTOM: UInt32 = 1 << 1
-    let COLLIDER_OBSTACLE: UInt32 = 1 << 2
-    let COLLIDER_GROUND: UInt32 = 1 << 3
+//    //Physics⛑️
+//    let COLLIDER_CHAR_FRONT: UInt32 = 1 << 0
+//    let COLLIDER_CHAR_BOTTOM: UInt32 = 1 << 1
+//    let COLLIDER_OBSTACLE: UInt32 = 1 << 2
+//    let COLLIDER_GROUND: UInt32 = 1 << 3
     
     
     override func didMove(to view: SKView) {
+       
         setupBackground()
         setupGround()
         setupCharacter()
+       
 //        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(jump(_:)))
 //        view.addGestureRecognizer(tapGestureRecognizer)
-        
+      
         let dumpster = Dumpster()
         dumpster.startMoving()
         self.addChild(dumpster)
@@ -56,6 +58,26 @@ class GameScene: SKScene {
         tapGestureRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue)]
         self.view?.addGestureRecognizer(tapGestureRecognizer)
     }
+    
+    func setupGameOverLabel() {
+        //self.run(SKAction.playSoundFileNamed("sfxGameOver.wav", waitForCompletion: false))
+        let gameOverLabel = SKLabelNode(fontNamed: "Chalkduster")
+        gameOverLabel.text = "Game Over"
+        gameOverLabel.fontSize = 40
+        gameOverLabel.fontColor = SKColor.red
+        gameOverLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        gameOverLabel.zPosition = 20 // 확실히 보이도록 높은 z 위치에 설정
+        gameOverLabel.isHidden = false // 초기에는 숨김
+        gameOverLabel.name = "gameOverLabel" // 참조를 위해 이름 설정
+        self.addChild(gameOverLabel)
+    }
+
+    
+    
+   
+    
+    
+    
     
     func setupBackground() {
         //배경화면 설정
@@ -148,9 +170,13 @@ class GameScene: SKScene {
         character.position = CGPointMake(CHAR_X_POS, CHAR_Y_POS)
         character.zPosition = 10
         
+      
+        
         let frontColliderSize = CGSizeMake(5, character.size.height * 0.80)
         let frontCollider = SKPhysicsBody(rectangleOf: frontColliderSize, center: CGPointMake(25, 0))
-        frontCollider.collisionBitMask = COLLIDER_OBSTACLE
+        frontCollider.collisionBitMask = GameManager.sharedInstance.COLLIDER_OBSTACLE
+        
+        
         
         let bottomColliderSize = CGSizeMake(character.size.width / 2, 5)
         let bottomCollider = SKPhysicsBody(rectangleOf: bottomColliderSize, center: CGPointMake(0, -(character.size.height / 2)))
@@ -172,6 +198,10 @@ class GameScene: SKScene {
         character.physicsBody?.isDynamic = true  //⛑️
         //중력
         self.physicsWorld.gravity = CGVectorMake(0.0, -10)
+        
+       
+     
+        
     }
     
     
@@ -208,53 +238,13 @@ class GameScene: SKScene {
     }
     
     
-    
-//    func touchDown(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.green
-//            self.addChild(n)
-//        }
-//    }
-//
-//    func touchMoved(toPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.blue
-//            self.addChild(n)
-//        }
-//    }
-//
-//    func touchUp(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.red
-//            self.addChild(n)
-//        }
-//    }
-//
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if let label = self.label {
-//            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-//        }
-//
-//        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-//    }
-//
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-//    }
-//
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
-//
-//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
-//
-//
     @objc override func update(_ currentTime: TimeInterval) {
+        
+        // 캐릭터의 x 위치가 CHAR_X_POS보다 작으면 게임 종료
+        if let character = character, character.position.x < -30 {
+            endGame()
+        }
+        
         // Called before each frame is rendered
         groundMovement()
 //        if ceil(character.position.y) < CHAR_Y_POS {
@@ -262,6 +252,7 @@ class GameScene: SKScene {
 //            character.position = CGPointMake(CHAR_X_POS, CHAR_Y_POS)
 //            isJumping = false
 //        }
+        
         
         //⛑️
         if isJumping {
@@ -274,6 +265,59 @@ class GameScene: SKScene {
         
         for child in self.children{
             child.update()
+        }
+        
+    }
+   
+    
+    func endGame() {
+        guard !gameEnded else { return }
+        setupGameOverLabel()
+        self.removeAllActions()
+        //super.update()
+        self.run(SKAction.playSoundFileNamed("sfxGameOver.wav", waitForCompletion: false))
+        // 여기에 게임 종료 관련 로직을 구현합니다.
+        // 예를 들어, 게임 오버 화면을 보여주거나 게임 리셋 등을 수행할 수 있습니다.
+       
+        print("게임 종료")
+       
+        // 게임 종료를 위한 추가 로직을 여기에 추가합니다.
+        gameEnded = true  // 게임 종료 플래그 설정
+    }
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        
+        if contact.bodyA.categoryBitMask == GameManager.sharedInstance.COLLIDER_OBSTACLE || contact.bodyB.categoryBitMask == GameManager.sharedInstance.COLLIDER_OBSTACLE {
+            print("부딪쳤어")
+            self.removeAllActions()
+            
+         //   musicPlayer.stop()
+            
+            //self.run(SKAction.playSoundFileNamed("sfxGameOver.wav", waitForCompletion: false))
+            
+        //    player.playCrashAnim()
+            
+//            for node in asphaltPieces {
+//                node.removeAllActions()
+//            }
+//            
+//            for node in sidewalkPieces {
+//                node.removeAllActions()
+//            }
+//            
+//            for x in 0..<3 {
+//                farBG[x].removeAllActions()
+//                midBG[x].removeAllActions()
+//                frontBG[x].removeAllActions()
+//            }
+//            
+//            for obs in obstacles {
+//                obs.removeAllActions()
+//            }
+//            
+//            for bld in buildings {
+//                bld.removeAllActions()
+//            }
         }
         
     }
