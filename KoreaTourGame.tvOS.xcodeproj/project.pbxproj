@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		AA3F250C2B85281700BC2761 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3F250B2B85281700BC2761 /* GameManager.swift */; };
+		AA3F250E2B86157900BC2761 /* sfxGameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = AA3F250D2B86157900BC2761 /* sfxGameOver.wav */; };
+		AA3F25102B86161300BC2761 /* sfxOllie.wav in Resources */ = {isa = PBXBuildFile; fileRef = AA3F250F2B86161300BC2761 /* sfxOllie.wav */; };
+		AA3F25122B861B4400BC2761 /* BeautifulKorea.wav in Resources */ = {isa = PBXBuildFile; fileRef = AA3F25112B861B4400BC2761 /* BeautifulKorea.wav */; };
 		AA4546D92B84C79E003D35A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4546D82B84C79E003D35A0 /* AppDelegate.swift */; };
 		AA4546DB2B84C79E003D35A0 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AA4546DA2B84C79E003D35A0 /* GameScene.sks */; };
 		AA4546DD2B84C79E003D35A0 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = AA4546DC2B84C79E003D35A0 /* Actions.sks */; };
@@ -24,6 +27,9 @@
 
 /* Begin PBXFileReference section */
 		AA3F250B2B85281700BC2761 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		AA3F250D2B86157900BC2761 /* sfxGameOver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxGameOver.wav; sourceTree = "<group>"; };
+		AA3F250F2B86161300BC2761 /* sfxOllie.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfxOllie.wav; sourceTree = "<group>"; };
+		AA3F25112B861B4400BC2761 /* BeautifulKorea.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BeautifulKorea.wav; sourceTree = "<group>"; };
 		AA4546D52B84C79E003D35A0 /* KoreaTourGame.tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KoreaTourGame.tvOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA4546D82B84C79E003D35A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA4546DA2B84C79E003D35A0 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -78,6 +84,9 @@
 				AA4546EF2B84C7CF003D35A0 /* Dumpster.swift */,
 				AA4546F02B84C7CF003D35A0 /* Obstacle.swift */,
 				AA4546F12B84C7CF003D35A0 /* SKNodeUpdate.swift */,
+				AA3F250D2B86157900BC2761 /* sfxGameOver.wav */,
+				AA3F250F2B86161300BC2761 /* sfxOllie.wav */,
+				AA3F25112B861B4400BC2761 /* BeautifulKorea.wav */,
 				AA4546F52B84C7E5003D35A0 /* Game.xcassets */,
 				AA4546E22B84C79E003D35A0 /* Main.storyboard */,
 				AA4546E52B84C79F003D35A0 /* Assets.xcassets */,
@@ -146,9 +155,12 @@
 			files = (
 				AA4546E42B84C79E003D35A0 /* Main.storyboard in Resources */,
 				AA4546DB2B84C79E003D35A0 /* GameScene.sks in Resources */,
+				AA3F25122B861B4400BC2761 /* BeautifulKorea.wav in Resources */,
 				AA4546E62B84C79F003D35A0 /* Assets.xcassets in Resources */,
+				AA3F250E2B86157900BC2761 /* sfxGameOver.wav in Resources */,
 				AA4546E92B84C79F003D35A0 /* LaunchScreen.storyboard in Resources */,
 				AA4546DD2B84C79E003D35A0 /* Actions.sks in Resources */,
+				AA3F25102B86161300BC2761 /* sfxOllie.wav in Resources */,
 				AA4546F62B84C7E5003D35A0 /* Game.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +332,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4KLMMMFY4D;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tightrope Master";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
@@ -345,6 +358,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4KLMMMFY4D;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tightrope Master";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;

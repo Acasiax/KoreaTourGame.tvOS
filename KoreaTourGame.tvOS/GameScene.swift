@@ -7,12 +7,14 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameEnded = false  // 게임 종료 여부를 나타내는 플래그
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    
+   
+    var musicPlayer: AVAudioPlayer!
     //땅
     let SW_PIECES = 20 //⛑️
     let ASP_PIECES = 15  //땅 블럭의 개수
@@ -57,10 +59,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.jump(_:)))
         tapGestureRecognizer.allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue)]
         self.view?.addGestureRecognizer(tapGestureRecognizer)
+        
+        playLevelMusic()
     }
     
     func setupGameOverLabel() {
-        //self.run(SKAction.playSoundFileNamed("sfxGameOver.wav", waitForCompletion: false))
+       // self.run(SKAction.playSoundFileNamed("sfxGameOver.wav", waitForCompletion: false))
         let gameOverLabel = SKLabelNode(fontNamed: "Chalkduster")
         gameOverLabel.text = "Game Over"
         gameOverLabel.fontSize = 40
@@ -204,13 +208,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func playLevelMusic() {
+        
+        let levelMusicURL = Bundle.main.url(forResource: "BeautifulKorea", withExtension: "wav")!
+        
+        do {
+            musicPlayer = try AVAudioPlayer(contentsOf: levelMusicURL)
+            musicPlayer.numberOfLoops = -1
+            musicPlayer.prepareToPlay()
+            musicPlayer.play()
+        } catch {
+            
+        }
+        
+    }
     
+ 
     //점프가 완료될 때까지 다시 점프하지 않도록 하는 점프 함수
     @objc func jump(_ gesture: UITapGestureRecognizer){
         //==은 동등연산자
         // 점프중이 false(아니)면 점프를 시작
         if isJumping == false {
             isJumping = true //할당연산자, 중복 점프가 발생하지 않도록 방지. 점프가 완료될 때까지 다시 점프하지 않도록
+            self.run(SKAction.playSoundFileNamed("sfxOllie.wav", waitForCompletion: false))
             //점프의 힘 적용
             let impulseX: CGFloat = 0.0 //x축은 그대로
             let impulseY: CGFloat = 60.0 //y축으로 60.0만큼의 힘으로 점프
@@ -291,7 +311,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("부딪쳤어")
             self.removeAllActions()
             
-         //   musicPlayer.stop()
+                // musicPlayer.stop()
+          
             
             //self.run(SKAction.playSoundFileNamed("sfxGameOver.wav", waitForCompletion: false))
             
