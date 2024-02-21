@@ -90,7 +90,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        bg2.position = CGPoint(x: 517, y: 450)
 //        bg2.zPosition = 2
 //        self.addChild(bg2)
-        
+//        
 //        let bg3 = SKSpriteNode(imageNamed: "bg3A")
 //        bg3.position = CGPoint(x: 517, y: 500)
 //        bg3.zPosition = 1
@@ -157,8 +157,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func setupCharacter() {
         
-        for x in 0..<12{
-            charPushFrames.append(SKTexture(imageNamed: "push\(x)"))
+        for x in 0..<9{
+            charPushFrames.append(SKTexture(imageNamed: "koreaRun\(x)"))
         }
         
         //sprite 설정
